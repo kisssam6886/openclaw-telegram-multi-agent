@@ -1,0 +1,93 @@
+{
+  "agents": {
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "name": "Jarvis",
+        "workspace": "/path/to/main/workspace",
+        "model": "google/gemini-2.0-flash"
+      },
+      {
+        "id": "dev",
+        "name": "ByteForge 开发助理",
+        "workspace": "/path/to/dev/workspace",
+        "model": "openai-codex/gpt-5.3-codex"
+      },
+      {
+        "id": "content",
+        "name": "EchoSignal 内容运营助理",
+        "workspace": "/path/to/content/workspace",
+        "model": "google/gemini-2.0-flash"
+      },
+      {
+        "id": "law",
+        "name": "LexVault 法务财务助理",
+        "workspace": "/path/to/law/workspace",
+        "model": "anthropic/claude-opus-4-6"
+      }
+    ]
+  },
+  "tools": {
+    "agentToAgent": {
+      "enabled": true,
+      "allow": [
+        "main",
+        "dev",
+        "content",
+        "law"
+      ]
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "open",
+      "accounts": {
+        "main": {
+          "botToken": "YOUR_MAIN_BOT_TOKEN"
+        },
+        "dev": {
+          "botToken": "YOUR_DEV_BOT_TOKEN"
+        },
+        "content": {
+          "botToken": "YOUR_CONTENT_BOT_TOKEN"
+        },
+        "law": {
+          "botToken": "YOUR_LAW_BOT_TOKEN"
+        }
+      }
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "telegram",
+        "accountId": "main"
+      }
+    },
+    {
+      "agentId": "dev",
+      "match": {
+        "channel": "telegram",
+        "accountId": "dev"
+      }
+    },
+    {
+      "agentId": "content",
+      "match": {
+        "channel": "telegram",
+        "accountId": "content"
+      }
+    },
+    {
+      "agentId": "law",
+      "match": {
+        "channel": "telegram",
+        "accountId": "law"
+      }
+    }
+  ]
+}
